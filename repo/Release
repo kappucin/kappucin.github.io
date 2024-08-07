@@ -1,8 +1,0 @@
-Origin: Kappucino
-Label: Kappucino's Repo
-Suite: stable
-Version: 1.0
-Codename: ios
-Architectures: iphoneos-arm
-Components: main
-Description: My repo for cydia, that contains must have iOS 6 Tweaks.
