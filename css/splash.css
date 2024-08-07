@@ -1,0 +1,111 @@
+﻿body {
+	padding: 0px;
+	margin: 0px;
+	overflow: auto;
+	background-color: #42515D;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: .8em;
+	color: #C8D0D7;
+	text-decoration: none;
+}
+img {
+	border:0px
+}
+#logo {
+	background-position: center top;
+	padding: 0px;
+	margin: 10px auto 0px auto;
+	width: 980px;
+	height: 550px;
+	position: relative;
+	overflow: hidden;
+}
+#logo-enter {
+	background-position: center top;
+	padding: 0px;
+	margin: 10px auto 0px auto;
+	width: 980px;
+	height: 550px;
+	position: relative;
+	overflow: hidden;
+	background-image: url('../theme/pickerington-web-design-logo.jpg');
+	background-repeat: no-repeat;
+}
+
+#welcome {
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	width: 600px;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+h1 {
+	padding: 0px;
+	margin: 0px;
+	font-size: 120%;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.LINKurl:link, a:visited {
+	color: #C8D0D7;
+	text-decoration: none;
+}
+a.LINKurl:hover {
+	color: #EBEEF1;
+	text-decoration: none;
+}
+.slpash-link {
+	padding: 0px;
+	margin: 385px 0px 0px 135px;
+	width: 192px;
+	position: relative;
+	overflow: hidden;
+	list-style-type: none;
+	height: 63px;
+}
+.slpash-link ul {
+	padding : 0px;
+	margin : 0px;
+	list-style-type : none;
+}
+.slpash-link ul li {
+	padding : 0px;
+	margin : 0px;
+	list-style-type: none;
+	width: 192px;
+	height: 63px;
+	position: relative;
+	text-align: center;
+	line-height: 470%;
+}
+.slpash-link ul li a {
+	background-position : 0px 0px;
+	margin: 0px;
+	display : block;
+	padding : 0px;
+	color: #A4B9BE;
+	text-decoration : none;
+	font-size: 250%;
+	position : relative;
+	background-repeat : no-repeat;
+	background-image: url('../theme/intro-button.jpg');
+	width: 192px;
+	height: 63px;
+	list-style-type: none;
+	font-weight: bold;
+}
+.slpash-link li a.current {
+	background-position : left top;
+	color : #A4B9BE;
+	list-style-type: none;
+}
+.slpash-link li a:hover {
+	background-position : -0px -63px;
+	color: #3C4D51;
+	background-image: url('../theme/intro-button.jpg');
+	background-repeat : no-repeat;
+	list-style-type: none;
+	font-weight: bold;
+}
