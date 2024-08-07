@@ -1,0 +1,13 @@
+Package: eu.heinelt.ifile
+Version: 2.2.0-1
+Section: Tweaks
+Maintainer: Carsten Heinelt
+Depends: 
+Architecture: iphoneos-arm
+Filename: ./debs/eu.heinelt.ifile_2.2.0-1_iphoneos-arm.deb
+Size: 930
+MD5sum: 88766f339cc7b150e356331e4594db7b
+Description: iFile is good file manager with .deb installing support.
+Name: iFile
+Author: Carsten Heinelt
+Depiction: https://kappucino.is-a.dev/repo/depictions/?p=eu.heinelt.ifile
