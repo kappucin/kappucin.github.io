@@ -20,7 +20,7 @@ Section: Tweaks
 Filename: ./debs/com.r333d.cylinder_1.1.deb
 Size: 300358
 
-Package: com.kappu.appsync
+Package: net.angelxwind.appsyncunified
 Name: AppSync Unifed
 Version: 102.0
 Architecture: iphoneos-arm
