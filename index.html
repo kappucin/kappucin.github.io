@@ -1,45 +1,23 @@
-<!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Капучино</title>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-image: url('images/back.gif');
-            background-size: cover;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        h1 {
-            margin: 20px 0; /* Отступы для текста */
-        }
-        .images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .images img {
-            width: 40px;
-            margin: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 </head>
-<body>
-    <h1>Привет</h1>
-    <div class="images">
-        <a href="https://kappucino.is-a.dev/games"><img src="images/1.png"></a>
-        <a href="https://github.com/kappucin"><img src="images/2.png"></a>
-        <a href="https://kappucino.is-a.dev/toolkit"><img src="images/3.png"></a>
-    </div>
+<body style="background: #000000; color:white;">
+<h3 style="margin-top: 46vh; text-align: center;"><span id="animated"></span></h3>
 </body>
+<script>
+        new Typed('#animated', {
+            strings: ['404', 'Это пустота', 'Здесь ничего нет...', 'Ну что ты смотришь? :)'],
+            typeSpeed: 4,
+            backSpeed: 0,
+            cursorChar: '|',
+            smartBackspace: true,
+            fadeOut: true,
+            loop: true
+        });
+    </script>
 </html>
