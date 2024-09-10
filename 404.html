@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игры</title>
+    <title>404</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap" rel="stylesheet">
     <style>
         body {
@@ -18,28 +18,38 @@
             color: white;
             text-align: center;
             font-family: 'Ubuntu', sans-serif;
-        }
-        a:link {
-            color: #FFFFFF;
-        }
-        a:visited {
-            color: #FFFFFF;
+            flex-direction: column;
         }
         #element {
+            font-size: 2em;
             line-height: normal;
-            display: inline-block;
+            margin-bottom: 40px;
+            height: 2em; /* Фиксированная высота контейнера */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        a {
+            color: #FFFFFF;
+            font-size: 1.2em;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Скрываем мигающий курсор */
         .typed-cursor {
-        position: relative;
-        left: auto;
-         right: 0;
-        }  
-
-</style>
+            display: none;
+        }
+    </style>
 </head>
 <body>
   <!-- Element to contain animated typing -->
-  <span id="element"></span>
+  <div id="element"></div>
+
+  <!-- Ссылка на страницу -->
+  <a href="https://kappucino.is-a.dev" target="_blank">Домой</a>
 
   <!-- Load library from the CDN -->
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
@@ -49,6 +59,7 @@
     var typed = new Typed('#element', {
       strings: ['Это космос, здесь нет ничего.. кроме звезд.', 'Почему все 404 страницы выглядят атмосферно?', 'Это космос, здесь нет ничего.. кроме звезд.', 'Всё еще залипаешь на текст? Ну залипай...'],
       typeSpeed: 50,
+      backSpeed: 25, /* Скорость стирания текста */
       loop: true
     });
   </script>
