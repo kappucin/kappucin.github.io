@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подождите...</title>
+    <script>
+        window.onload = function() {
+            if (window.innerWidth > 768) { // Ширина экрана больше 768px (компьютер)
+                window.location.href = "https://kappucino.is-a.dev/6k/desk.html"; // URL для десктопной версии
+            } else {
+                window.location.href = "https://kappucino.is-a.dev/6k/mob.html"; // URL для мобильной версии
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Загрузка...</h1> <!-- Сообщение при загрузке -->
+</body>
+</html>
