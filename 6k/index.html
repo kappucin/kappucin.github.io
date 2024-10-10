@@ -83,5 +83,14 @@
             additionalContent.style.display = 'none'; // Скрываем дополнительный контент
         }
     });
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) { // Если прокрутка больше 50 пикселей
+            footer.classList.add('hidden');
+            additionalContent.style.display = 'block'; // Показываем дополнительный контент
+        } else {
+            footer.classList.remove('hidden');
+            additionalContent.style.display = 'none'; // Скрываем дополнительный контент
+        }
+    });
 </script>
 </body>
