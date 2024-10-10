@@ -15,7 +15,7 @@
         .content {
             padding: 20px;
             height: 100vh; /* Высота экрана */
-            overflow: auto; /* Скрываем переполнение */
+            overflow: hidden; /* Скрываем переполнение */
         }
         .additional-content {
             display: none
@@ -35,6 +35,17 @@
         .hidden {
             opacity: 0; /* Скрываем текст */
         }
+        @media (min-width: 1024px) {
+            .text-desktop {
+                display: block; /* Показываем текст для ПК */
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .text-mobile {
+                display: block; /* Показываем текст для мобильных */
+            }
+        }
     </style>
 </head>
 <body>
@@ -48,7 +59,9 @@
        </div>
 
     <div class="footer" id="footer">
-      <p class="mycom">⭣ Архив ⭣</p>
+      <p class="mycom">
+    <div class="text text-desktop"><a href="#additionalContent">Нажмите чтобы перейти в архив</a></div>
+    <div class="text text-mobile">Прокрутите чтобы попасть в архив</div></p>
     </div>
 
     <div class="additional-content" id="additionalContent">
