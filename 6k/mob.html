@@ -72,12 +72,6 @@
 </center>
 
 <script>
-if (navigator.userAgent.indexOf('Windows') !== -1 || navigator.userAgent.indexOf('Macintosh') !== -1) {
-    // Отключаем выполнение скрипта
-    console.log("Скрипт отключен для компьютера.");
-} else {
-    // Основной код скрипта
-    console.log("Скрипт выполняется.");
     const footer = document.getElementById('footer');
     const additionalContent = document.getElementById('additionalContent');
 
@@ -90,6 +84,5 @@ if (navigator.userAgent.indexOf('Windows') !== -1 || navigator.userAgent.indexOf
             additionalContent.style.display = 'none'; // Скрываем дополнительный контент
         }
     });
-    }
 </script>
 </body>
