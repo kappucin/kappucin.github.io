@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Плавное появление картинок</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .image-wrapper {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+      width: 100%;
+      max-width: 400px;
+    }
+    .image-wrapper img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .image-wrapper.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .image-wrapper {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="image-wrapper"><img src="https://via.placeholder.com/400x300" alt="Картинка 1"></div>
+    <div class="image-wrapper"><img src="https://via.placeholder.com/400x300" alt="Картинка 2"></div>
+    <div class="image-wrapper"><img src="https://via.placeholder.com/400x300" alt="Картинка 3"></div>
+  </div>
+
+  <script>
+    // Функция для плавного появления картинок
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.5 // Показывать, если видимо хотя бы 50% объекта
+    });
+
+    // Наблюдать за каждой картинкой
+    document.querySelectorAll('.image-wrapper').forEach((wrapper) => {
+      observer.observe(wrapper);
+    });
+  </script>
+
+</body>
+</html>
