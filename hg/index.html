@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="ru">
+<head>
+    <title>Хамстер Барабулька</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            min-height: 100vh;
+            justify-content: center;
+        }
+        #counter {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        #hamster {
+            width: 200px;
+            height: 200px;
+            background-image: url('hamster.png');
+            background-size: cover;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        #progress-bar {
+            width: 80%;
+            height: 20px;
+            background-color: #ddd;
+            margin-top: 20px;
+        }
+        #progress {
+            width: 0;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div id="counter">0</div>
+    <div id="hamster"></div>
+    <div id="progress-bar"><div id="progress"></div></div>
+
+    <script>
+        let clicks = 0;
+        const milestones = [100, 1000, 10000, 1000000];
+        const hamster = document.getElementById('hamster');
+        const counter = document.getElementById('counter');
+        const progress = document.getElementById('progress');
+
+        // Убедитесь, что приложение будет работать внутри Telegram Web App
+        Telegram.WebApp.init();
+
+        hamster.addEventListener('click', () => {
+            clicks++;
+            counter.textContent = clicks;
+            updateProgress();
+            if (milestones.includes(clicks)) {
+                // Отправляем данные в Telegram при достижении milestone
+                Telegram.WebApp.sendData(clicks.toString());
+            }
+        });
+
+        function updateProgress() {
+            const milestone = milestones.find(m => m > clicks) || milestones[milestones.length - 1];
+            const percentage = (clicks / milestone) * 100;
+            progress.style.width = `${percentage}%`;
+        }
+    </script>
+</body>
+</html>
