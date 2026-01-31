@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="kppcn bio">
+    <title>kppcn</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&family=IBM+Plex+Mono:wght@300;400&display=swap');
+        
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        
+        :root{
+            --bg-black:#000;
+            --bg-dark-1:#0a0a0a;
+            --bg-dark-2:#111;
+            --bg-dark-3:#1a1a1a;
+            --text-white:#fff;
+            --text-gray:#b3b3b3;
+            --glass-bg:rgba(26,26,26,.35);
+            --glass-border:rgba(255,255,255,.08);
+        }
+        
+        body{
+            font-family:'IBM Plex Mono',monospace;
+            background:linear-gradient(135deg,var(--bg-black) 0%,var(--bg-dark-2) 50%,var(--bg-dark-1) 100%);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:1.25rem;
+            position:relative;
+            overflow:hidden;
+        }
+        
+        body::before{
+            content:'';
+            position:fixed;
+            inset:0;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+            pointer-events:none;
+            z-index:1;
+        }
+        
+        .container{
+            position:relative;
+            z-index:2;
+            width:100%;
+            max-width:32rem;
+            background:var(--glass-bg);
+            backdrop-filter:blur(1.125rem) saturate(120%);
+            -webkit-backdrop-filter:blur(1.125rem) saturate(120%);
+            border:1px solid var(--glass-border);
+            border-radius:1.5rem;
+            padding:4rem 2.5rem;
+            box-shadow:0 .5rem 2rem rgba(0,0,0,.5),0 .125rem .5rem rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.05);
+            animation:float 6s ease-in-out infinite;
+            will-change:transform;
+            text-align:center;
+        }
+        
+        @keyframes float{
+            0%,100%{transform:translateY(0)}
+            50%{transform:translateY(-.75rem)}
+        }
+        
+        .error-code{
+            font-family:'Space Mono',monospace;
+            font-size:8rem;
+            font-weight:700;
+            color:var(--text-white);
+            margin-bottom:1rem;
+            position:relative;
+            line-height:1;
+        }
+        
+        .error-code span{
+            position:relative;
+            display:inline-block;
+        }
+        
+        .error-code span::before,
+        .error-code span::after{
+            content:attr(data-text);
+            position:absolute;
+            inset:0;
+        }
+        
+        .error-code span::before{
+            animation:glitch-1 2.5s infinite;
+            clip-path:polygon(0 0,100% 0,100% 45%,0 45%);
+            transform:translate(-3px,-3px);
+            opacity:.8;
+        }
+        
+        .error-code span::after{
+            animation:glitch-2 2.5s infinite;
+            clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%);
+            transform:translate(3px,3px);
+            opacity:.8;
+        }
+        
+        @keyframes glitch-1{
+            0%,100%{transform:translate(0)}
+            20%{transform:translate(-4px,3px)}
+            40%{transform:translate(-3px,-3px)}
+            60%{transform:translate(4px,2px)}
+            80%{transform:translate(3px,-2px)}
+        }
+        
+        @keyframes glitch-2{
+            0%,100%{transform:translate(0)}
+            20%{transform:translate(4px,-3px)}
+            40%{transform:translate(3px,3px)}
+            60%{transform:translate(-4px,-2px)}
+            80%{transform:translate(-3px,2px)}
+        }
+        
+        .error-title{
+            font-size:1.5rem;
+            font-weight:400;
+            color:var(--text-white);
+            margin-bottom:.75rem;
+            letter-spacing:.0625rem;
+        }
+        
+        .error-message{
+            font-size:.875rem;
+            color:var(--text-gray);
+            margin-bottom:2.5rem;
+            line-height:1.6;
+            font-weight:300;
+        }
+        
+        .divider{
+            width:100%;
+            height:1px;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+            margin:2rem 0;
+        }
+        
+        .error-icon{
+            width:6rem;
+            height:6rem;
+            margin:0 auto 2rem;
+            border-radius:50%;
+            background:rgba(17,17,17,.5);
+            border:1px solid rgba(255,255,255,.08);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .error-icon::before{
+            content:'';
+            position:absolute;
+            inset:-50%;
+            background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 70%);
+            animation:rotate 8s linear infinite;
+        }
+        
+        @keyframes rotate{
+            to{transform:rotate(360deg)}
+        }
+        
+        .error-icon svg{
+            width:2.5rem;
+            height:2.5rem;
+            stroke:var(--text-gray);
+            position:relative;
+            z-index:1;
+        }
+        
+        .actions{
+            display:flex;
+            flex-direction:column;
+            gap:.75rem;
+        }
+        
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:.75rem;
+            padding:1rem 1.5rem;
+            background:rgba(17,17,17,.4);
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:.75rem;
+            color:var(--text-white);
+            text-decoration:none;
+            font-size:.875rem;
+            font-weight:400;
+            transition:all .3s cubic-bezier(.4,0,.2,1);
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .btn::before{
+            content:'';
+            position:absolute;
+            inset:0 -100% 0 0;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+            transition:transform .5s ease;
+            transform:translateX(-100%);
+        }
+        
+        .btn:hover::before{
+            transform:translateX(100%);
+        }
+        
+        .btn:hover{
+            background:rgba(26,26,26,.6);
+            border-color:rgba(255,255,255,.15);
+            transform:translateX(.25rem);
+        }
+        
+        .btn-icon{
+            width:1.125rem;
+            height:1.125rem;
+        }
+        
+        .footer{
+            margin-top:2.5rem;
+            font-size:.6875rem;
+            color:var(--text-gray);
+            opacity:.5;
+            letter-spacing:.0625rem;
+        }
+        
+        @media(max-width:32.5rem){
+            .container{padding:3rem 2rem}
+            .error-code{font-size:6rem}
+            .error-title{font-size:1.25rem}
+            .error-icon{width:5rem;height:5rem}
+            .error-icon svg{width:2rem;height:2rem}
+        }
+        
+        @media(max-width:23.75rem){
+            .error-code{font-size:5rem}
+            .error-title{font-size:1.125rem}
+            .error-message{font-size:.8125rem}
+        }
+        
+        ::-webkit-scrollbar{width:.5rem}
+        ::-webkit-scrollbar-track{background:var(--bg-dark-1)}
+        ::-webkit-scrollbar-thumb{background:var(--bg-dark-3);border-radius:.25rem}
+        ::-webkit-scrollbar-thumb:hover{background:#2a2a2a}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+        </div>
+        
+        <div class="error-code">
+            <span data-text="404">404</span>
+        </div>
+        
+        <h1 class="error-title">PAGE NOT FOUND</h1>
+        
+        <p class="error-message">
+            The page you're looking for doesn't exist or has been moved.<br>
+            It's lost in the digital void.
+        </p>
+        
+        <div class="divider"></div>
+        
+        <div class="actions">
+            <a href="/" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                <span>RETURN HOME</span>
+            </a>
+            
+            <a href="javascript:history.back()" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"/>
+                    <polyline points="12 19 5 12 12 5"/>
+                </svg>
+                <span>GO BACK</span>
+            </a>
+        </div>
+        
+        <div class="footer">
+            © 2026 · kppcn
+        </div>
+    </div>
+</body>
+</html>
