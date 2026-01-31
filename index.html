@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="kppcn bio">
+    <title>kppcn</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&family=IBM+Plex+Mono:wght@300;400;600&display=swap');
+        
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        
+        :root{
+            --bg-black:#000;
+            --bg-dark-1:#0a0a0a;
+            --bg-dark-2:#111;
+            --bg-dark-3:#1a1a1a;
+            --text-white:#fff;
+            --text-gray:#b3b3b3;
+            --glass-bg:rgba(26,26,26,.35);
+            --glass-border:rgba(255,255,255,.08);
+            --transition:all .3s cubic-bezier(.4,0,.2,1);
+        }
+        
+        body{
+            font-family:'IBM Plex Mono',monospace;
+            background:linear-gradient(135deg,var(--bg-black) 0%,var(--bg-dark-2) 50%,var(--bg-dark-1) 100%);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:1.25rem;
+            position:relative;
+            overflow-x:hidden;
+        }
+        
+        body::before{
+            content:'';
+            position:fixed;
+            inset:0;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+            pointer-events:none;
+            z-index:1;
+        }
+        
+        .container{
+            position:relative;
+            z-index:2;
+            width:100%;
+            max-width:30rem;
+            background:var(--glass-bg);
+            backdrop-filter:blur(1.125rem) saturate(120%);
+            -webkit-backdrop-filter:blur(1.125rem) saturate(120%);
+            border:1px solid var(--glass-border);
+            border-radius:1.5rem;
+            padding:3rem 2.25rem;
+            box-shadow:0 .5rem 2rem rgba(0,0,0,.5),0 .125rem .5rem rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.05);
+            animation:float 6s ease-in-out infinite;
+            will-change:transform;
+        }
+        
+        @keyframes float{
+            0%,100%{transform:translateY(0)}
+            50%{transform:translateY(-.75rem)}
+        }
+        
+        .avatar-container{
+            display:flex;
+            justify-content:center;
+            margin-bottom:1.75rem;
+        }
+        
+        .avatar{
+            width:8.75rem;
+            height:8.75rem;
+            border-radius:50%;
+            border:3px solid var(--text-gray);
+            box-shadow:0 0 2.5rem rgba(179,179,179,.2),0 0 5rem rgba(179,179,179,.1),inset 0 0 1.25rem rgba(0,0,0,.4);
+            background:linear-gradient(135deg,var(--bg-dark-3) 0%,var(--bg-dark-1) 100%);
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .avatar img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            border-radius:50%;
+        }
+        
+        .avatar::before{
+            content:'';
+            position:absolute;
+            inset:-50%;
+            background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 70%);
+            animation:rotate 8s linear infinite;
+            pointer-events:none;
+        }
+        
+        @keyframes rotate{
+            to{transform:rotate(360deg)}
+        }
+        
+        .username{
+            text-align:center;
+            font-family:'Space Mono',monospace;
+            font-size:2rem;
+            font-weight:700;
+            color:var(--text-white);
+            margin-bottom:.75rem;
+            text-transform:uppercase;
+            letter-spacing:.125rem;
+        }
+        
+        .username span{
+            position:relative;
+            display:inline-block;
+        }
+        
+        .username span::before,.username span::after{
+            content:attr(data-text);
+            position:absolute;
+            inset:0;
+        }
+        
+        .username span::before{
+            animation:glitch-1 2.5s infinite;
+            clip-path:polygon(0 0,100% 0,100% 45%,0 45%);
+            transform:translate(-2px,-2px);
+            opacity:.8;
+        }
+        
+        .username span::after{
+            animation:glitch-2 2.5s infinite;
+            clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%);
+            transform:translate(2px,2px);
+            opacity:.8;
+        }
+        
+        @keyframes glitch-1{
+            0%,100%{transform:translate(0)}
+            20%{transform:translate(-3px,2px)}
+            40%{transform:translate(-2px,-2px)}
+            60%{transform:translate(3px,1px)}
+            80%{transform:translate(2px,-1px)}
+        }
+        
+        @keyframes glitch-2{
+            0%,100%{transform:translate(0)}
+            20%{transform:translate(3px,-2px)}
+            40%{transform:translate(2px,2px)}
+            60%{transform:translate(-3px,-1px)}
+            80%{transform:translate(-2px,1px)}
+        }
+        
+        .subtitle{
+            text-align:center;
+            font-size:.8125rem;
+            color:var(--text-gray);
+            margin-bottom:2.25rem;
+            letter-spacing:.0625rem;
+            font-weight:300;
+        }
+        
+        .media-player{
+            background:rgba(17,17,17,.5);
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:.875rem;
+            padding:1rem;
+            margin-bottom:2.25rem;
+            transition:var(--transition);
+        }
+        
+        .media-player:hover{
+            background:rgba(20,20,20,.6);
+            border-color:rgba(255,255,255,.12);
+        }
+        
+        .player-content{
+            display:flex;
+            gap:1rem;
+            align-items:center;
+        }
+        
+        .album-cover{
+            width:4.5rem;
+            height:4.5rem;
+            border-radius:.5rem;
+            overflow:hidden;
+            flex-shrink:0;
+            position:relative;
+            background:linear-gradient(135deg,var(--bg-dark-3),var(--bg-dark-1));
+            box-shadow:0 .25rem 1rem rgba(0,0,0,.4),inset 0 0 .5rem rgba(0,0,0,.3);
+        }
+        
+        .album-cover img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+        
+        .album-cover::after{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:linear-gradient(135deg,transparent 60%,rgba(255,255,255,.03));
+            pointer-events:none;
+        }
+        
+        .track-info{
+            flex:1;
+            min-width:0;
+        }
+        
+        .track-name{
+            font-size:.875rem;
+            font-weight:600;
+            color:var(--text-white);
+            margin-bottom:.25rem;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+        }
+        
+        .track-artist{
+            font-size:.75rem;
+            color:var(--text-gray);
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+        }
+        
+        .playback-controls{
+            display:flex;
+            gap:.5rem;
+            align-items:center;
+            margin-top:.75rem;
+        }
+        
+        .play-btn{
+            width:2rem;
+            height:2rem;
+            border-radius:50%;
+            background:rgba(255,255,255,.08);
+            border:1px solid rgba(255,255,255,.1);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+            transition:var(--transition);
+            flex-shrink:0;
+        }
+        
+        .play-btn:hover{
+            background:rgba(255,255,255,.12);
+            border-color:rgba(255,255,255,.2);
+            transform:scale(1.05);
+        }
+        
+        .play-btn svg{
+            width:.875rem;
+            height:.875rem;
+            fill:var(--text-white);
+        }
+        
+        .progress-bar{
+            flex:1;
+            height:.25rem;
+            background:rgba(255,255,255,.1);
+            border-radius:.125rem;
+            overflow:hidden;
+            position:relative;
+        }
+        
+        .progress-fill{
+            height:100%;
+            background:var(--text-white);
+            width:15%;
+            border-radius:.125rem;
+            position:relative;
+        }
+        
+        .progress-fill::after{
+            content:'';
+            position:absolute;
+            right:0;
+            top:50%;
+            transform:translateY(-50%);
+            width:.5rem;
+            height:.5rem;
+            background:var(--text-white);
+            border-radius:50%;
+            box-shadow:0 0 .5rem rgba(255,255,255,.5);
+        }
+        
+        .track-time{
+            font-size:.625rem;
+            color:var(--text-gray);
+            font-family:'Space Mono',monospace;
+            flex-shrink:0;
+        }
+        
+        .links{
+            display:flex;
+            flex-direction:column;
+            gap:.625rem;
+            margin-bottom:2rem;
+        }
+        
+        .link-btn{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:.75rem;
+            padding:1rem 1.5rem;
+            background:rgba(17,17,17,.4);
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:.75rem;
+            color:var(--text-white);
+            text-decoration:none;
+            font-size:.875rem;
+            font-weight:400;
+            transition:var(--transition);
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .link-btn::before{
+            content:'';
+            position:absolute;
+            inset:0 -100% 0 0;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+            transition:transform .5s ease;
+            transform:translateX(-100%);
+        }
+        
+        .link-btn:hover::before{
+            transform:translateX(100%);
+        }
+        
+        .link-btn:hover{
+            background:rgba(26,26,26,.6);
+            border-color:rgba(255,255,255,.15);
+            transform:translateX(.25rem);
+        }
+        
+        .link-icon{
+            width:1.25rem;
+            height:1.25rem;
+            flex-shrink:0;
+        }
+        
+        .footer{
+            text-align:center;
+            font-size:.6875rem;
+            color:var(--text-gray);
+            opacity:.6;
+            letter-spacing:.0625rem;
+            padding-top:1.5rem;
+            border-top:1px solid rgba(255,255,255,.05);
+        }
+        
+        @media(max-width:32.5rem){
+            .container{padding:2.25rem 1.5rem}
+            .username{font-size:1.625rem}
+            .avatar{width:7.5rem;height:7.5rem}
+            .album-cover{width:4rem;height:4rem}
+        }
+        
+        @media(max-width:23.75rem){
+            .username{font-size:1.375rem;letter-spacing:.0625rem}
+            .track-name{font-size:.8125rem}
+            .track-artist{font-size:.6875rem}
+        }
+        
+        ::-webkit-scrollbar{width:.5rem}
+        ::-webkit-scrollbar-track{background:var(--bg-dark-1)}
+        ::-webkit-scrollbar-thumb{background:var(--bg-dark-3);border-radius:.25rem}
+        ::-webkit-scrollbar-thumb:hover{background:#2a2a2a}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="avatar-container">
+            <div class="avatar">
+                <img src="https://raw.githubusercontent.com/kappucin/kappucin.github.io/refs/heads/master/photo_2026-01-29_23-01-52.jpg" alt="kppcn avatar">
+            </div>
+        </div>
+        
+        <h1 class="username">
+            <span data-text="KPPCN">kppcn</span>
+        </h1>
+        
+        <p class="subtitle">
+            aka kp9n, q9, q9cn
+        </p>
+        
+        <div class="media-player">
+            <div class="player-content">
+                <div class="album-cover">
+                    <img src="https://f4.bcbits.com/img/a1664460568_16.jpg" alt="cover">
+                </div>
+                <div class="track-info">
+                    <div class="track-name">Fingerbib</div>
+                    <div class="track-artist">Aphex Twin</div>
+                </div>
+            </div>
+            <div class="playback-controls">
+                <div class="play-btn">
+                    <svg viewBox="0 0 24 24">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="track-time">03:49</div>
+            </div>
+        </div>
+        
+        <div class="links">
+            <a href="https://t.me/trusteduninstaller" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>Telegram</span>
+            </a>
+            
+            <a href="https://github.com/kappucin" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+            
+            <a href="https://youtube.com/@kppcn" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                </svg>
+                <span>YouTube</span>
+            </a>
+        </div>
+        
+        <div class="footer">
+            © 2026 · kppcn
+        </div>
+    </div>
+</body>
+</html>
